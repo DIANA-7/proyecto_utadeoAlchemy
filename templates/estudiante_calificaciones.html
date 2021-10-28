@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+    <title>estudiantes/calificaciones</title>
+    <link rel="stylesheet" href="css/estilos_interno.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+
+    <link rel="shortcut icon" href="img/letra UT.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="/css/estilos_estu_calif.css" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav class="menu__lateral">
+            <div class="logo-header">
+                <img src="img/logo_2.jpeg" alt="" />
+            </div>
+
+            <ul class="components">
+                <div class="main__links" style="margin-bottom: 318px">
+                    <li>
+                        <a href="estudiante.html"><i class="fas fa-user-circle"></i><span>Estudiante</span></a
+              >
+            </li>
+            <li>
+              <a href="estudiante_curso.html"
+                ><i class="fas fa-book"></i><span>Cursos</span></a
+              >
+            </li>
+            <li>
+              <a href="estudiante_calificaciones.html" class="active"
+                ><i class="fas fa-clipboard-check"></i
+                ><span>Calificiones</span></a
+              >
+            </li>
+
+            <li>
+              <a href="estudiante_actividades.html"
+                ><i class="fas fa-edit"></i><span>Actividades</span></a
+              >
+            </li>
+          </div>
+
+          <div class="close__sesion">
+            <li>
+              <a href=""
+                ><i class="fas fa-sign-out-alt"></i
+                ><span>Cerrar Sesion</span></a
+              >
+            </li>
+          </div>
+        </ul>
+      </nav>
+
+      <div class="content">
+        <header class="header_interno">
+          <h1>CALIFICACIONES</h1>
+        </header>
+        <div class="content__main">
+          <!-- TRABAJE SU HTML AQUI -->
+
+          <table class="table_calific">
+            <tr>
+              <th>ID_Asignatura</th>
+              <th>Asignatura</th>
+              <th>ID_curso</th>
+              <th>Nota_Acumulada</th>
+              <th>Estado</th>
+            </tr>
+            <tr>
+              <td>ASG0001</td>
+              <td>Programación I</td>
+              <td>Sist_001</td>
+              <td>3.5</td>
+              <td>Aprobado</td>
+            </tr>
+            <tr>
+              <td>ASG0002</td>
+              <td>Calculo I</td>
+              <td>Sist_002</td>
+              <td>2.9</td>
+              <td>No Aprobado</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,377 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;700&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --main_color: #135386;
+    --secund_color: #DFEEEF;
+    --btn_color: #9ba7ae;
+    --border_color: #747474;
+    --color_fondo_tcabecera: #135386;
+    --shadow_box: -1px 3px 8px 0px rgba(0, 0, 0, 0.75);
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    width: 100%;
+    font-size: 1.6rem;
+    background: #fafafa;
+    font-family: 'Urbanist', sans-serif;
+    overflow-x: hidden;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ---------------------------------------------------
+    MENU LATERAL
+----------------------------------------------------- */
+
+.menu__lateral {
+    width: 25rem;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    background: #fff;
+    color: #000;
+    transition: all 0.3s;
+    border-right: 1px solid var(--border_color);
+}
+
+.menu__lateral .logo-header {
+    padding: 1rem;
+}
+
+.menu__lateral .logo-header img {
+    width: 100%;
+}
+
+.menu__lateral ul.components {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    list-style: none;
+    padding: .5rem 0;
+    border-top: 1px solid #747474;
+}
+
+
+/* .menu__lateral .components .main__links {
+    margin-bottom: 200px;
+} */
+
+.menu__lateral ul li a {
+    display: block;
+    font-size: 1.1em;
+    color: #000;
+    padding: 10px;
+}
+
+.menu__lateral ul li a span {
+    font-weight: bold;
+    margin-left: .8rem;
+}
+
+.menu__lateral ul li a:hover {
+    color: #fff;
+    background: rgb(110, 106, 106);
+}
+
+.menu__lateral ul li a.active {
+    font-weight: bold;
+    color: #000;
+    background: lightgrey;
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 3rem !important;
+}
+
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+.content {
+    width: 112rem;
+    background-color: var(--secund_color);
+    min-height: 90vh;
+    transition: all 0.3s;
+    margin-left: 25rem;
+}
+
+.content.active {
+    width: 100%;
+}
+
+.content .header_interno {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 7rem;
+    background-color: var(--main_color);
+    color: #fff;
+    text-align: center;
+}
+
+.content .content__main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+}
+
+
+/* VISTA ESTUDIANTE */
+
+.table_usuario {
+    border-collapse: collapse;
+}
+
+.table_usuario tr td {
+    text-align: center;
+    border: hidden;
+    padding: 1.5rem;
+    /*  margin: 10rem auto; */
+}
+
+.icono_usuario {
+    display: block;
+    width: 20rem;
+    height: 15rem;
+    background: none;
+    border-radius: 3rem;
+    border: none;
+    cursor: pointer;
+    font-size: 12rem;
+    color: black;
+    transition: .3s ease all;
+    /*no se para que sirve transition*/
+}
+
+caption {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+
+/*  Estilos internos vista: estudiante_curso  */
+
+.table_curso {
+    border-collapse: collapse;
+}
+
+.table_curso th td {
+    border: 1px solid var(--secund_color);
+    padding: 5px;
+    /*espacio entre los elementos*/
+    /* margin: 20rem auto; */
+    /*
+    margin-top: 5rem;
+    margin-left: 31rem;
+    margin-right: 20rem;
+    */
+}
+
+.table_curso td {
+    text-align: center;
+    background-color: white;
+}
+
+.table_curso th {
+    background-color: var(--color_fondo_tcabecera);
+    color: white
+}
+
+
+/*  Estilos internos vista: estudiante_calificaciones  */
+
+.table_calific,
+th,
+td {
+    border: 1px solid #cbcecf;
+    border-collapse: collapse;
+    padding: 5px;
+    margin: 20rem auto;
+}
+
+.table_calific,
+td {
+    text-align: center;
+    background-color: white;
+}
+
+.table_calific th {
+    background-color: var(--color_fondo_tcabecera);
+    color: white
+}
+
+
+/*  Estilos internos vista: estudiante_actividades */
+
+.asignatura_activ {
+    margin-top: 2rem;
+    margin-left: 5rem;
+}
+
+.table_activ {
+    border-collapse: collapse;
+}
+
+.table_activ td {
+    text-align: center;
+    background-color: white;
+    padding: 5px;
+}
+
+.table_activ th {
+    background-color: var(--color_fondo_tcabecera);
+    color: white
+}
+
+
+/* ESTILOS VISTA ADMINISTADOR */
+
+
+/* administrador usuarios */
+
+.btn_CrearUsuario {
+    display: block;
+    width: 20rem;
+    text-align: center;
+    border-radius: 1.8rem;
+    color: #fff;
+    background: var(--btn_color);
+    padding: 1rem;
+    margin-bottom: 3rem;
+}
+
+.usuarios_admin {
+    width: 85%;
+    height: 90%;
+    padding: 2rem 2rem;
+}
+
+.table_usuarios_admin {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table_usuarios_admin th {
+    color: #fff;
+    background-color: var(--color_fondo_tcabecera);
+}
+
+.table_usuarios_admin,
+td {
+    border: none;
+}
+
+
+/* Administrador crearUsuario */
+
+.form {
+    width: 80rem;
+    height: 75vh;
+    padding: 2rem;
+}
+
+.form .input_buscar {
+    width: 55rem;
+    margin: 0 auto;
+}
+
+.form .cont_input {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+    margin: 2rem;
+}
+
+.form .cont_btn {
+    width: 40rem;
+    margin: 0 auto;
+}
+
+.btn_input {
+    width: 12rem;
+    color: #fff;
+    background: var(--btn_color);
+    padding: .8rem;
+    border-radius: 1.8rem;
+    cursor: pointer;
+}
+
+.form .input_buscar .input {
+    width: 28rem;
+    font-size: 2rem;
+    padding: .7rem;
+}
+
+.form .label p {
+    font-weight: bold;
+}
+
+.form .cont_input .input {
+    width: 28rem;
+    font-size: 2rem;
+    padding: .7rem;
+}
+
+.cont_btn input {
+    display: block;
+    margin: 0 auto;
+}
+
+
+/* VISTA DOCENTE */
+
+.content_calif {
+    width: 90%;
+    height: 80vh;
+}
+
+.content_input {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 4rem;
+}
+
+.content_calif .input {
+    display: block;
+    width: 28rem;
+    font-size: 2rem;
+    padding: .7rem;
+}
+
+.content_calif .cont_btn {
+    width: 40rem;
+    margin: 0 auto;
+}
+
+.content_calif .table_usuarios_admin .input {
+    width: 100%;
+    font-size: 2rem;
+    padding: .7rem;
+}

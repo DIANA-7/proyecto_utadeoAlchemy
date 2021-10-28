@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@300;400;500;700&display=swap');
+
+/* VARIABLES */
+
+:root {
+    --primary_color: #135386;
+    --secundary_color: #b6e9f9;
+    --btn_color: #9ba7ae;
+    --shadow_box: -1px 3px 8px 0px rgba(0, 0, 0, 0.75);
+}
+
+
+/* RESETEAR EL MARGIN EL PADING POR DEFECTO */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* PARA LEER LOS REM COMO SI FUERAN PIXCELES */
+
+html {
+    font-size: 62.5%;
+}
+
+body {
+    font-size: 1.6rem;
+    font-family: 'Urbanist', sans-serif;
+}
+
+
+/* ESTILOS HEADER */
+
+.header {
+    background: var(--primary_color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    box-shadow: var(--shadow_box);
+}
+
+
+/* ESTILOS LOGO */
+
+.header .logo {
+    margin-left: 5rem;
+}
+
+.header .logo img {
+    width: 23.7rem;
+    border-radius: 50%;
+}
+
+
+/* ESTILOS NAVEGADOR */
+
+.header .nav {
+    width: 45rem;
+    margin-right: 10rem;
+}
+
+.header .nav .nav__links {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.header .nav li {
+    list-style: none;
+}
+
+.header .nav .link {
+    display: block;
+    font-size: 2rem;
+    text-decoration: none;
+    color: #f3f3f3;
+    background-color: var(--btn_color);
+    padding: 1.2rem 1rem;
+    border-radius: 1.5rem;
+    transition: all .3s linear;
+}
+
+.header .nav .link:hover {
+    background: #c3e8e8;
+    color: black;
+    transform: scaleY(1.2);
+}
+
+
+/* ESTILOS SECTION PORTADA */
+
+.portada {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 72vh;
+    background-image: url('/static/img/tadeo.webp');
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+    /*   opacity: .6; */
+}
+
+
+/* ESTILOS FORM */
+
+.modal__form {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    right: 400px;
+    bottom: 100px;
+    width: 40%;
+    height: 40%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, .4);
+    padding-top: 60%;
+    margin: 0 auto;
+}
+
+.close__form {
+    position: absolute;
+    top: 1rem;
+    right: 2.5rem;
+    color: #000;
+    font-size: 3.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form__portada {
+    width: 40%;
+    height: 60vh;
+    text-align: center;
+    background: #005d84;
+    padding: 1rem 3rem;
+    box-shadow: var(--shadow_box);
+    opacity: .6;
+}
+
+.form__portada span img {
+    display: block;
+    margin: 0 auto;
+    padding-top: 2rem;
+}
+
+.form__portada .name,
+.password {
+    width: 40rem;
+    padding: .5rem;
+    margin: 0 auto;
+    /* background: #b6e9f9; */
+}
+
+.form__portada label {
+    font-size: 2rem;
+    display: block;
+}
+
+.form__portada input {
+    width: 35rem;
+    font-family: inherit;
+    font-size: 2.2rem;
+    text-align: center;
+    color: white;
+    background-color: #000;
+    border-radius: 1rem;
+    padding: 1rem 0;
+    opacity: .9;
+}
+
+.form__portada .btn {
+    width: 20rem;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: white;
+    background-color: var(--btn_color);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+}
+
+.form__portada .btn:hover {
+    color: #000;
+    background: #c3e8e8;
+}
+
+.form__portada .olvido>a {
+    color: white;
+    font-weight: bold;
+}
+
+
+/* ESTILOS FOOTER */
+
+footer {
+    height: 12vh;
+    background: var(--primary_color);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer .logo img {
+    width: 70%;
+}
+
+.redes__sociales {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.redes__sociales .social {
+    padding: 2rem 1rem;
+    color: white;
+    text-decoration: none;
+    padding: .5rem;
+}
+
+.redes__sociales .social:hover {
+    text-decoration: underline;
+}
+
+.redes__sociales .social span {
+    padding: .5rem;
+    margin-left: .5rem;
+}

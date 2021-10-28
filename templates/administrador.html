@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+    <title>administrador</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/estilos_interno.css') }}" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="shortcut icon" href="{{ url_for('static', filename= 'img/letra UT.ico') }}" type="image/x-icon" />
+</head>
+
+<body>
+    <!-- <div class="wrapper"> -->
+    <!-- Sidebar Holder -->
+    <nav class="menu__lateral">
+        <div class="logo-header">
+            <img src="{{ url_for('static', filename= 'img/logo_2.jpeg') }}" alt="logo" />
+        </div>
+
+        <ul class="components">
+            <div class="main__links" style="margin-bottom: 17px">
+                <li>
+                    <a href="{{url_for('admin')}}" class="active"><i class="fas fa-user-circle"></i><span>Empleado</span></a
+            >
+          </li>
+          <li>
+            <a href="{{url_for('usuarios')}}"
+><i class="fas fa-user-cog"></i
+              ><span>Administrar Usuario</span></a
+            >
+            <ul style="list-style-image: url('img/cog-solid.svg')">
+              <li>
+                <a href="{{url_for('crearUsuarios')}}">Crear Usuario</a>
+                </li>
+                <li>
+                    <a href="{{url_for('editarUsuarios')}}">Editar Usuario</a>
+                </li>
+                <li>
+                    <a href="{{url_for('elimUsuarios')}}">Eliminar Usuario</a>
+                </li>
+        </ul>
+        </li>
+        <li>
+            <a href="{{url_for('cursos')}}"><i class="fas fa-book"></i><span>Administrar Curso</span></a
+            >
+
+            <ul
+              style="list-style-image: url('img/cog-solid.svg')"
+              class="sub_iconos"
+            >
+              <li><a href="{{url_for('crearCursos')}}">Crear Curso</a></li>
+        <li><a href="{{url_for('editarCurso')}}">Editar Curso</a></li>
+        <li>
+            <a href="{{url_for('elimCurso')}}">Eliminar Curso</a>
+        </li>
+        <li>
+            <a href="{{url_for('crearAsignatura')}}">Crear Asignatura</a
+                >
+              </li>
+              <li>
+                <a href="{{url_for('editarAsignatura')}}"
+                  >Editar Asignatura</a
+                >
+              </li>
+              <li>
+                <a href="{{url_for('elimAsignatura')}}"
+                  >Eliminar Asignatura</a
+                >
+              </li>
+            </ul>
+          </li>
+        </div>
+
+        <div class="close__sesion">
+          <li>
+            <a href="{{url_for('logout')}}"
+              ><i class="fas fa-sign-out-alt"></i>
+              <span>Cerrar Sesion</span></a
+            >
+          </li>
+        </div>
+      </ul>
+    </nav>
+
+    <div class="content">
+      <!-- <header class="header_interno">
+            <h1>Cursos</h1>
+        </header> -->
+
+      <div class="content__main">
+        <table class="table_usuario">
+          <caption>
+            <button class="icono_usuario">
+              <i class="fas fa-user-circle"></i>
+            </button>
+            <span class="usuario">{{datos.nombre}} {{datos.apellido}}</span>
+          </caption>
+
+          <tr>
+            <td>Usuario</td>
+            <td>{{usuario}}</td>
+          </tr>
+          <tr>
+            <td>Dirección de Correo Electrónico</td>
+              <td>{{datos.correo}}</td>
+          </tr>
+          <tr>
+            <td>ID Estudiante</td>
+            <td>{{datos.id_estudiante}}</td>
+          </tr>
+          <tr>
+              <td>Contraseña</td>
+              <td><a href="">Cambio de Contraseña</a></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+</body>
+
+</html>

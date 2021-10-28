@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+    <title>docentes/curso</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/estilos_interno.css') }}" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename= 'img/letra UT.ico') }}" type="image/x-icon" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav class="menu__lateral">
+            <div class="logo-header">
+                <img src="{{ url_for('static', filename= 'img/logo_2.jpeg') }}" alt="" />
+            </div>
+
+            <ul class="components">
+                <div class="main__links" style="margin-bottom: 318px">
+                    <li>
+                        <a href="{{url_for('docente')}}"><i class="fas fa-user-circle"></i><span>Docente</span></a
+              >
+            </li>
+            <li>
+              <a href="{{url_for('docenteCurso')}}" class="active"
+                ><i class="fas fa-book"></i><span>Cursos</span></a
+              >
+            </li>
+            <li>
+              <a href="{{url_for('calificaciones')}}"
+                ><i class="fas fa-clipboard-check"></i
+                ><span>Calificiones</span></a
+              >
+            </li>
+
+            <li>
+              <a href="{{url_for('actividades')}}"
+                ><i class="fas fa-edit"></i><span>Actividades</span></a
+              >
+            </li>
+          </div>
+
+          <div class="close__sesion">
+            <li>
+              <a href=""
+                ><i class="fas fa-sign-out-alt"></i
+                ><span>Cerrar Sesion</span></a
+              >
+            </li>
+          </div>
+        </ul>
+      </nav>
+
+      <div class="content">
+        <header class="header_interno">
+          <h1>CURSOS</h1>
+        </header>
+        <div class="content__main">
+          <!-- TRABAJE SU HTML AQUI -->
+          <table class="table_curso">
+
+            <tr>
+          
+              <th>ID ASIGNATURA</th>
+          
+              <th>ASIGNATURA</th>
+          
+              <th>ID CURSO</th>
+
+                                        
+            </tr>
+          
+            <tr>
+          
+              <td> ASIG001  </td>
+          
+              <td>  PROGRAMACION I </td>
+          
+              <td> GRUPO 01  </td>
+
+             
+          
+            </tr>
+
+            <tr>
+          
+                <td> ASIG005  </td>
+            
+                <td>  PROGRAMACION II </td>
+            
+                <td> GRUPO 2  </td>
+
+            
+            </tr>
+
+            <tr>
+          
+                <td> ASIG002  </td>
+            
+                <td>  BASE DE DATOS </td>
+            
+                <td> GRUPO 01  </td>
+
+                
+            
+            </tr>
+            
+
+        </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

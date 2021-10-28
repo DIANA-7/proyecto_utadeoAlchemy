@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="pagina para registrar y consultar notas de la utadeo" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Utadeo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/estilos.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+    <link rel="shortcut icon" href="{{ url_for('static', filename= 'img/letra UT.ico') }}" type="image/x-icon" />
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <!-- HEADER LOGO -->
+        <div class="logo">
+            <img src="{{ url_for('static', filename= 'img/logo_2.jpeg') }}" alt="" />
+        </div>
+        <!-- HEADER NAV-->
+        <nav class="nav">
+            <ul class="nav__links">
+                <li>
+                    <input type="submit" class="link" id="student" value="Estudiantes" />
+                </li>
+                <li>
+                    <input type="submit" class="link" id="teacher" value="Docentes" />
+                </li>
+                <li>
+                    <input type="submit" class="link" id="emp" value="Empleados" />
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- PORTADA -->
+    <section class="portada">
+        <div>
+            <!-- FORMULARIO MODAL -->
+            <form action="" class="form__portada modal__form" id="form">
+                <div class="close__form">
+                    <span class="close" title="Cerrar formulario">&times;</span>
+                </div>
+                <span><img
+              src="{{ url_for('static', filename= 'img/user-circle-solid.svg') }}"
+              width="100px"
+              height="100px"
+              alt=""
+          /></span>
+                <div class="name">
+                    <label for="username">Nombre de usuario</label>
+                    <input type="text" name="username" id="name" />
+                </div>
+                <div class="password">
+                    <label for="password">Contraseña</label>
+                    <input type="password" name="password" id="password" />
+                </div>
+                <input type="submit" value="Iniciar sesion" class="btn" />
+                <p class="olvido"><a href="">¿Ha olvidado su contraseña?</a></p>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="redes__sociales">
+            <a href="https://www.facebook.com/utadeo.edu.co/" target="_blank" class="social"><i class="fab fa-facebook"></i><span>Facebook</span></a
+        >
+
+        <a
+          href="https://www.youtube.com/channel/UC-iXhGLQw9ozhHJYmnngdkg"
+          target="_blank"
+          class="social"
+          ><i class="fab fa-youtube"></i><span>Youtube</span></a
+        >
+
+        <a
+          href="https://www.instagram.com/utadeo.edu.co/"
+          target="_blank"
+          class="social"
+          ><i class="fab fa-instagram"></i><span>Instagram</span></a
+        >
+
+        <a
+          href="https://www.linkedin.com/school/utadeo"
+          target="_blank"
+          class="social"
+          ><i class="fab fa-linkedin"></i><span>Linkedin</span></a
+        >
+      </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename= 'js/codigo.js') }}"></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/js/all.min.js"
+      integrity="sha512-cyAbuGborsD25bhT/uz++wPqrh5cqPh1ULJz4NSpN9ktWcA6Hnh9g+CWKeNx2R0fgQt+ybRXdabSBgYXkQTTmA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </body>
+</html>

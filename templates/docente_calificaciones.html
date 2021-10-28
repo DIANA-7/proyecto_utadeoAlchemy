@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+
+    <title>docentes/calificaciones</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/estilos_interno.css') }}" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename= 'img/letra UT.ico') }}" type="image/x-icon" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <!-- Sidebar Holder -->
+        <nav class="menu__lateral">
+            <div class="logo-header">
+                <img src="{{ url_for('static', filename= 'img/logo_2.jpeg') }}" alt="" />
+            </div>
+
+            <ul class="components">
+                <div class="main__links" style="margin-bottom: 318px">
+                    <li>
+                        <a href="{{url_for('docente')}}"><i class="fas fa-user-circle"></i><span>Docente</span></a
+              >
+            </li>
+            <li>
+              <a href="{{url_for('docenteCurso')}}"
+                ><i class="fas fa-book"></i><span>Cursos</span></a
+              >
+            </li>
+            <li>
+              <a href="{{url_for('calificaciones')}}" class="active"
+                ><i class="fas fa-clipboard-check"></i
+                ><span>Calificiones</span></a
+              >
+            </li>
+
+            <li>
+              <a href="{{url_for('actividades')}}"
+                ><i class="fas fa-edit"></i><span>Actividades</span></a
+              >
+            </li>
+          </div>
+
+          <div class="close__sesion">
+            <li>
+              <a href=""
+                ><i class="fas fa-sign-out-alt"></i
+                ><span>Cerrar Sesion</span></a
+              >
+            </li>
+          </div>
+        </ul>
+      </nav>
+
+      <div class="content">
+        <header class="header_interno">
+          <h1>CALIFICACIONES</h1>
+        </header>
+        <div class="content__main">
+          <!-- TRABAJE SU HTML AQUI -->
+         <div class="content_calif">
+          <div class="content_input">
+            <select name="curso" class="input">
+                <option value="1">Curso 1</option> 
+                <option value="2">Curso 2</option> 
+                <option value="3">Curso 3</option>
+            </select>
+            <br>
+            <br>
+            <select name="asign" class="input">
+                <option value="1">programacion</option> 
+                <option value="2">ingles</option> 
+                <option value="3">calculo</option>
+                
+             </select>
+             <br>
+             <br>
+
+             <select name="activi" class="input">
+                <option value="1">Parcial 1</option> 
+                <option value="2">Parcial 2</option> 
+                <option value="3">Trabajo en Grupo</option>
+                 
+             </select>
+
+
+        </div>
+
+        <div class="table_usuarios_admin">
+
+            <table >
+
+                    <tr>
+                  
+                      <th >ID ESTUDIANTE</th>
+                  
+                      <th>NOMBRE</th>
+                  
+                      <th>CALIFICACIONES</th>
+
+                      <th>COMENTARIO</th>
+                  
+                    </tr>
+                  
+                    <tr>
+                  
+                      <td> <input type="number" name="nota" id="nota1" class="input">  </td>
+                  
+                      <td>  <input type="text" class="input"> </td>
+                  
+                      <td> <input type="number" name="nota" id="nota1" class="input">  </td>
+
+                      <td>  <input type="text" class="input"> </td>
+                  
+                    </tr>
+
+                    <tr>
+                  
+                        <td> <input type="number" name="nota" id="nota1" class="input">  </td>
+                    
+                        <td>  <input type="text" class="input"> </td>
+                    
+                        <td> <input type="number" name="nota" id="nota1" class="input">  </td>
+
+                        <td>  <input type="text" class="input"> </td>
+                    
+                      </tr>
+
+                      <tr>
+                  
+                        <td> <input type="number" name="nota" id="nota1" class="input">  </td>
+                    
+                        <td>  <input type="text" class="input"> </td>
+                    
+                        <td> <input type="number" name="nota" id="nota1" class="input">  </td>
+
+                        <td>  <input type="text" class="input"> </td>
+                    
+                      </tr>
+
+            </table>
+            <br>
+            <br>
+
+        <input type="submit" value="Guardar" class="btn_input" style="display:block;margin: 0 auto;">
+        </div>
+         </div>
+      </div>
+    </div>
+  </body>
+</html>
