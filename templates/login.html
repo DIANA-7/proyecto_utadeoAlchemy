@@ -23,15 +23,7 @@
         <!-- HEADER NAV-->
         <nav class="nav">
             <ul class="nav__links">
-                <li>
-                    <input type="submit" class="link" id="student" value="Estudiantes" />
-                </li>
-                <li>
-                    <input type="submit" class="link" id="teacher" value="Docentes" />
-                </li>
-                <li>
-                    <input type="submit" class="link" id="emp" value="Empleados" />
-                </li>
+               
             </ul>
         </nav>
     </header>
@@ -39,7 +31,7 @@
     <section class="portada">
         <div>
             <!-- FORMULARIO MODAL -->
-            <form class="form__portada modal__forms" id="forms" method="post" action="{{url_for('login') }}">
+            <form class="form__portada modal__form" id="form" method="post" action="{{url_for('login') }}" >
                 <div class="close__form">
                     <span class="close" title="Cerrar formulario">&times;</span>
                 </div>

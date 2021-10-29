@@ -37,9 +37,7 @@
               <li>
                 <a href="{{url_for('crearUsuarios')}}">Crear Usuario</a>
                 </li>
-                <li>
-                    <a href="{{url_for('editarUsuarios')}}">Editar Usuario</a>
-                </li>
+                
                 <li>
                     <a href="{{url_for('elimUsuarios')}}">Eliminar Usuario</a>
                 </li>
@@ -98,6 +96,7 @@
                         <th style="width: 250px">Usuario</th>
                         <th style="width: 250px">Identificación</th>
                         <th style="width: 200px">Rol</th>
+                        <th style="width: 200px">Editar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -106,6 +105,7 @@
                         <td>{{usuario.nombre_usuario}}</td>
                         <td>{{usuario.id_usuario}}</td>
                         <td>{{usuario.rol}}</td>
+                        <td><a href="{{url_for('editarUsuarios',u=usuario.nombre_usuario)}}" class="btn_CrearUsuario">Editar</a></td>
                     </tr>
                     {% endfor %}
                </tbody>

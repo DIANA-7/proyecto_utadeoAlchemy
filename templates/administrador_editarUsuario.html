@@ -37,10 +37,7 @@
               <li>
                 <a href="{{url_for('crearUsuarios')}}">Crear Usuario</a>
                 </li>
-                <li>
-                    <a href="{{url_for('editarUsuarios')}}" class="active">Editar Usuario</a
-                >
-              </li>
+                
               <li>
                 <a href="{{url_for('elimUsuarios')}}">Eliminar Usuario</a>
                 </li>
@@ -91,12 +88,7 @@
 
       <div class="content__main">
         <!-- <div class="crear_usuario"> -->
-        <form action="" class="form">
-          <div class="input_buscar">
-            <label for="" style="font-weight: bold">Buscar usuario</label>
-            <input type="text" value="" class="input" />
-            <input type="submit" value="Buscar" class="btn_input" />
-          </div>
+        <form action="{{url_for('editarUsuarios') }}" method="post" class="form">
           <div class="cont_input">
             <label for="" class="label">
               <p>Nombre</p>
@@ -105,6 +97,7 @@
                 name="name_usuario"
                 id="name_usuario"
                 class="input"
+                value="{{usuario.nombre}}"
               />
             </label>
             <label for="" class="label">
@@ -114,6 +107,7 @@
                 name="lastname_usuario"
                 id="lastname_usuario"
                 class="input"
+                value="{{usuario.apellido}}"
               />
             </label>
           </div>
@@ -121,7 +115,9 @@
           <div class="cont_input">
             <label for="" class="label">
               <p>Doc. Identidad</p>
-              <input type="text" name="doc" id="doc" class="input" />
+              <input type="text" name="doc" id="doc" class="input" value="{{user.id_usuario}}" />
+              <input type="hidden" name="id" class="input" value="{{user.id_usuario}}"/>
+
             </label>
             <label for="" class="label">
               <p>Correo</p>
@@ -130,6 +126,7 @@
                 name="mail_usuario"
                 id="mail_usuario"
                 class="input"
+                value="{{usuario.correo}}"
               />
             </label>
           </div>
@@ -144,14 +141,7 @@
               </select>
             </label>
 
-            <label for="" class="label">
-              <p>Rol</p>
-              <select name="" id="" class="input">
-                <option value="admin">Administrador</option>
-                <option value="docente">Docente</option>
-                <option value="estudiante">Estudiante</option>
-              </select>
-            </label>
+            
           </div>
 
           <div class="cont_btn">
