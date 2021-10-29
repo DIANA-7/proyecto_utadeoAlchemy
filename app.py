@@ -7,7 +7,7 @@ import os
 
 
 #Conexion a la base de datos
-dirdb= "sqlite:///" + os.path.abspath(os.getcwd()) + "/prueba.sqlite"
+dirdb= "sqlite:///" + os.path.abspath(os.getcwd()) + "/BD_UTadeo.sqlite"
 
 
 
@@ -20,21 +20,69 @@ app.config['SQLALCHEMY_DATABASE_URI'] = dirdb
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db=SQLAlchemy(app)
 
+
 class tb_usuarios(db.Model):
     __tablename__ = 'tb_usuarios'
     id_usuario = db.Column(db.Integer, primary_key=True)
-    nombre_usuario = db.Column(db.String(100))
+    nombre_usuario = db.Column(db.String(100),nullable=False, unique=True)
     password = db.Column(db.String(200))
     rol = db.Column(db.String(30))
+
+class tb_cursos(db.Model):
+    __tablename__ = 'tb_cursos'
+    id_curso = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(100))
+    num_alumnos = db.Column(db.Integer)
+    num_asignaturas = db.Column(db.Integer, nullable=False, unique=True)
+    fecha_inicio = db.Column(db.Date) 
+    fecha_fin = db.Column(db.Date)
+    semestre = db.Column(db.Integer)
 
 class tb_estudiantes(db.Model):
     __tablename__ = 'tb_estudiantes'
     id_estudiante = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100))
     apellido = db.Column(db.String(100))
-    correo = db.Column(db.String(100))
-    ##id_curso = db.Column(db.String(100))
-    ##id_usuario = db.Column(db.Integer)
+    correo = db.Column(db.String(100), nullable=False, unique=True)
+    id_usuario = db.Column(db.Integer, db.ForeignKey(tb_usuarios.id_usuario))
+    id_curso = db.Column(db.String(100), db.ForeignKey(tb_cursos.id_curso))
+
+
+
+class tb_admin(db.Model):
+    __tablename__ = 'tb_admin'
+    id_admin = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(100))
+    apellido = db.Column(db.String(100))
+    correo = db.Column(db.String(100), nullable=False, unique=True)
+    id_usuario = db.Column(db.Integer, db.ForeignKey(tb_usuarios.id_usuario))
+
+    
+    
+class tb_asignaturas(db.Model):
+    __tablename__ = 'tb_asignaturas'
+    id_asignatura = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(100))
+    num_creditos = db.Column(db.Integer)
+    id_curso = db.Column(db.Integer, db.ForeignKey(tb_cursos.id_curso))
+
+class tb_docentes(db.Model):
+    __tablename__ = 'tb_docentes'
+    id_docente = db.Column(db.Integer, primary_key=True)
+    nombre = db.Column(db.String(100))
+    apellido = db.Column(db.String(100))
+    correo = db.Column(db.String(100), nullable=False, unique=True)
+    id_usuario = db.Column(db.Integer, db.ForeignKey(tb_usuarios.id_usuario))
+    id_asignatura = db.Column(db.String(100), db.ForeignKey(tb_asignaturas.id_asignatura))
+
+class tb_actividades(db.Model):
+    __tablename__ = 'tb_actividades'
+    id_actividad = db.Column(db.Integer, primary_key=True)
+    descripcion = db.Column(db.String(100))
+    porcentaje = db.Column(db.FLOAT)
+    Calificacion = db.Column(db.FLOAT)
+    estado = db.Column(db.String(30))
+    id_asignatura = db.Column(db.Integer, db.ForeignKey(tb_asignaturas.id_asignatura))
 
 
 
@@ -43,7 +91,8 @@ db.create_all()##para crear tablas de bases de datos
 #RUTA INDEX
 @app.route("/")
 def index():
-    return render_template('index.html')
+    return redirect(url_for('login'))
+    #return render_template('index.html')
 
 #RUTA LOGIN /no terminado aun.
 
@@ -70,7 +119,7 @@ def login():
 @app.route("/logout")
 def logout():
     session.pop('username', None)
-    return redirect(url_for('index'))
+    return redirect(url_for('login'))
 
 #RUTAS ADMINISTRADOR
 
@@ -80,7 +129,7 @@ def logout():
 def admin():
     if 'username' in session and tb_usuarios.query.filter_by(nombre_usuario=session['username']).first().rol == "admin":
         id_u=tb_usuarios.query.filter_by(nombre_usuario=session['username']).first().id_usuario
-        datos= tb_estudiantes.query.filter_by(id_estudiante=id_u).first()
+        datos= tb_admin.query.filter_by(id_admin=id_u).first()
         return render_template('administrador.html', datos=datos, usuario=session['username'])
         
     return 'No se encuentra logueado' 
@@ -102,19 +151,69 @@ def crearUsuarios():
             hashed_pw = generate_password_hash(request.form['password'], method='sha256')
             id_u=request.form['doc']
             new_user=tb_usuarios(nombre_usuario=request.form['usuario'], password=hashed_pw, rol=request.form['rol'], id_usuario=id_u)
-            new_user2=tb_estudiantes(nombre=request.form['name_usuario'], apellido=request.form['lastname_usuario'], id_estudiante=id_u, correo=request.form['mail_usuario'])
+            if request.form['rol'] == 'estudiante':
+                new_user2=tb_estudiantes(nombre=request.form['name_usuario'], apellido=request.form['lastname_usuario'], id_estudiante=id_u, correo=request.form['mail_usuario'])
+            elif request.form['rol'] == 'docente':
+                new_user2=tb_docentes(nombre=request.form['name_usuario'], apellido=request.form['lastname_usuario'], id_docente=id_u, correo=request.form['mail_usuario'])    
+            elif request.form['rol'] == 'admin':
+                new_user2=tb_admin(nombre=request.form['name_usuario'], apellido=request.form['lastname_usuario'], id_admin=id_u, correo=request.form['mail_usuario'])    
             db.session.add(new_user)
             db.session.commit()
             db.session.add(new_user2)
             db.session.commit()
-            return redirect(url_for('index'))
+            return redirect(url_for('usuarios'))
         
         return render_template('administrador_crearUsuario.html')
     return 'No se encuentra logueado '
 
 @app.route('/admin/editarUsuarios', methods=['POST', 'GET'])
 def editarUsuarios():
-    return render_template('administrador_editarUsuario.html')
+    u=request.args.get('u')
+    user=tb_usuarios.query.filter_by(nombre_usuario=u).first()
+    
+    if 'username' in session and tb_usuarios.query.filter_by(nombre_usuario=session['username']).first().rol == "admin":
+        if request.method == 'POST':
+            user=tb_usuarios.query.filter_by(id_usuario=request.form['id']).first()
+            if user.rol == 'estudiante':
+                usuario=tb_estudiantes.query.filter_by(id_estudiante=user.id_usuario).first()
+                usuario.nombre=request.form['name_usuario']
+                usuario.apellido=request.form['lastname_usuario']
+                usuario.correo=request.form['mail_usuario']
+                usuario.id_estudiante=request.form['doc']
+                user.id_usuario=request.form['doc']
+                db.session.commit()
+                return redirect(url_for('usuarios'))
+            if user.rol == 'docente':
+                usuario=tb_docentes.query.filter_by(id_docente=user.id_usuario).first()
+                usuario.nombre=request.form['name_usuario']
+                usuario.apellido=request.form['lastname_usuario']
+                usuario.correo=request.form['mail_usuario']
+                usuario.id_docente=request.form['doc']
+                user.id_usuario=request.form['doc']
+                db.session.commit()
+                return redirect(url_for('usuarios'))
+            if user.rol == 'admin':
+                usuario=tb_admin.query.filter_by(id_admin=user.id_usuario).first()
+                usuario.nombre=request.form['name_usuario']
+                usuario.apellido=request.form['lastname_usuario']
+                usuario.correo=request.form['mail_usuario']
+                usuario.id_admin=request.form['doc']
+                user.id_usuario=request.form['doc']
+                db.session.commit()
+                return redirect(url_for('usuarios'))        
+        ##Prerender
+        if user.rol=="admin":
+            usuario=tb_admin.query.filter_by(id_admin = user.id_usuario).first()
+            return render_template('administrador_editarUsuario.html',usuario=usuario, user=user)
+        if user.rol=="estudiante":
+            usuario=tb_estudiantes.query.filter_by(id_estudiante=user.id_usuario).first()
+            return render_template('administrador_editarUsuario.html',usuario=usuario, user=user)
+        if user.rol=="docente":
+            usuario=tb_docentes.query.filter_by(id_docente=user.id_usuario).first()
+            return render_template('administrador_editarUsuario.html',usuario=usuario, user=user)
+        
+          
+    return 'No se encuentra logueado'  
 
 @app.route('/admin/eliminarUsuarios', methods=['POST', 'GET'])
 def elimUsuarios():
@@ -157,7 +256,7 @@ def elimAsignatura():
 def docente():
     if 'username' in session and tb_usuarios.query.filter_by(nombre_usuario=session['username']).first().rol == "docente":
             id_u=tb_usuarios.query.filter_by(nombre_usuario=session['username']).first().id_usuario
-            datos= tb_estudiantes.query.filter_by(id_estudiante=id_u).first()
+            datos= tb_docentes.query.filter_by(id_docente=id_u).first()
             return render_template('docente.html', datos=datos, usuario=session['username'])
             
     return 'No se encuentra logueado' 
