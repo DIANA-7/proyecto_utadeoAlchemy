@@ -1,7 +1,7 @@
 from flask import Flask, request, session, url_for
 from flask.templating import render_template
 from werkzeug.utils import redirect
-from flask_sqlalchemy import SQLAlchemy 
+from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 import os
 
@@ -44,7 +44,8 @@ class tb_estudiantes(db.Model):
     nombre = db.Column(db.String(100))
     apellido = db.Column(db.String(100))
     correo = db.Column(db.String(100), nullable=False, unique=True)
-    id_usuario = db.Column(db.Integer, db.ForeignKey(tb_usuarios.id_usuario))
+    id_usuario = db.Column(db.Integer, db.ForeignKey("tb_usuarios.id_usuario", ondelete="CASCADE", onupdate="CASCADE"))
+    users = db.relationship("tb_usuarios", backref="tb_estudiantes")
     id_curso = db.Column(db.String(100), db.ForeignKey(tb_cursos.id_curso))
 
 
@@ -172,6 +173,7 @@ def editarUsuarios():
     user=tb_usuarios.query.filter_by(nombre_usuario=u).first()
     
     if 'username' in session and tb_usuarios.query.filter_by(nombre_usuario=session['username']).first().rol == "admin":
+
         if request.method == 'POST':
             user=tb_usuarios.query.filter_by(id_usuario=request.form['id']).first()
             if user.rol == 'estudiante':
@@ -215,9 +217,21 @@ def editarUsuarios():
           
     return 'No se encuentra logueado'  
 
-@app.route('/admin/eliminarUsuarios', methods=['POST', 'GET'])
+@app.route('/admin/eliminarUsuarios/', methods=['POST', 'GET'])
 def elimUsuarios():
-    return render_template('administrar_eliminarUsuario.html')
+    if 'username' in session and tb_usuarios.query.filter_by(nombre_usuario=session['username']).first().rol == "admin":
+
+        variable=tb_usuarios.query.get(id)
+        db.session.delete(variable)
+        db.session.commit()
+
+
+         
+        return redirect(url_for('usuarios',usuarios=variable)) #redirecciona a admin/usuarios para verificar que se elimino
+            
+    return 'No se encuentra logueado' 
+    
+
 
 #ADMIN CURSOS
 @app.route('/admin/cursos')
@@ -296,3 +310,7 @@ def estudianteCalificaciones():
 @app.route('/estudiante/actividades', methods=['POST', 'GET'])
 def estudianteActividades():
     return render_template('estudiante_actividades.html')
+
+if __name__ == '__main__':
+   
+    app.run(debug=True)

@@ -38,9 +38,7 @@
                 <a href="{{url_for('crearUsuarios')}}">Crear Usuario</a>
                 </li>
                 
-                <li>
-                    <a href="{{url_for('elimUsuarios')}}">Eliminar Usuario</a>
-                </li>
+               
         </ul>
         </li>
         <li>
@@ -73,9 +71,10 @@
 
         <div class="close__sesion">
           <li>
-            <a href="index.html"
-              ><i class="fas fa-sign-out-alt"></i><span>Cerrar Sesion</span></a
-            >
+            <a href="{{url_for('logout')}}"
+              ><i class="fas fa-sign-out-alt"></i>
+              <span>Cerrar Sesion</span></a
+              >
           </li>
         </div>
       </ul>
@@ -88,7 +87,7 @@
 
       <div class="content__main">
         <div class="usuarios_admin">
-          <a href="{{url_for('crearUsuarios')}}" class="btn_CrearUsuario">Crear Nuevo Usuario</a>
+          <a href="{{url_for('crearUsuarios')}}" class="btn_CrearUsuario"></a>
 
             <table class="table_usuarios_admin">
                 <thead>
@@ -97,15 +96,20 @@
                         <th style="width: 250px">Identificación</th>
                         <th style="width: 200px">Rol</th>
                         <th style="width: 200px">Editar</th>
+                        <th style="width: 200px">Eliminar</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {% for usuario in usuarios %}
+                  {% for usuario in usuarios %}
                     <tr>
+                      
                         <td>{{usuario.nombre_usuario}}</td>
                         <td>{{usuario.id_usuario}}</td>
                         <td>{{usuario.rol}}</td>
                         <td><a href="{{url_for('editarUsuarios',u=usuario.nombre_usuario)}}" class="btn_CrearUsuario">Editar</a></td>
+                      
+                       
+                        <td><a href="{{url_for('elimUsuarios',id=usuario ['id_usuario'])}}" class="btn_CrearUsuario">Eliminar</a></td>
                     </tr>
                     {% endfor %}
                </tbody>

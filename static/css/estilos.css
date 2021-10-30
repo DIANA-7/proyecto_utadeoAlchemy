@@ -109,7 +109,7 @@ body {
 /* ESTILOS FORM */
 
 .modal__form {
-    display: none;
+    
     position: fixed;
     z-index: 1;
     right: 400px;
