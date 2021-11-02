@@ -44,9 +44,9 @@ class tb_estudiantes(db.Model):
     nombre = db.Column(db.String(100))
     apellido = db.Column(db.String(100))
     correo = db.Column(db.String(100), nullable=False, unique=True)
-    id_usuario = db.Column(db.Integer, db.ForeignKey("tb_usuarios.id_usuario", ondelete="CASCADE", onupdate="CASCADE"))
+    id_usuario = db.Column(db.Integer, db.ForeignKey(tb_usuarios.id_usuario, ondelete="CASCADE", onupdate="CASCADE"))
     users = db.relationship("tb_usuarios", backref="tb_estudiantes")
-    id_curso = db.Column(db.String(100), db.ForeignKey(tb_cursos.id_curso))
+    id_curso = db.Column(db.String(100), db.ForeignKey(tb_cursos.id_curso, ondelete="CASCADE", onupdate="CASCADE"))
 
 
 
@@ -56,7 +56,7 @@ class tb_admin(db.Model):
     nombre = db.Column(db.String(100))
     apellido = db.Column(db.String(100))
     correo = db.Column(db.String(100), nullable=False, unique=True)
-    id_usuario = db.Column(db.Integer, db.ForeignKey(tb_usuarios.id_usuario))
+    id_usuario = db.Column(db.Integer, db.ForeignKey(tb_usuarios.id_usuario, ondelete="CASCADE", onupdate="CASCADE"))
 
     
     
@@ -65,7 +65,7 @@ class tb_asignaturas(db.Model):
     id_asignatura = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100))
     num_creditos = db.Column(db.Integer)
-    id_curso = db.Column(db.Integer, db.ForeignKey(tb_cursos.id_curso))
+    id_curso = db.Column(db.Integer, db.ForeignKey(tb_cursos.id_curso, ondelete="CASCADE", onupdate="CASCADE"))
 
 class tb_docentes(db.Model):
     __tablename__ = 'tb_docentes'
@@ -73,8 +73,8 @@ class tb_docentes(db.Model):
     nombre = db.Column(db.String(100))
     apellido = db.Column(db.String(100))
     correo = db.Column(db.String(100), nullable=False, unique=True)
-    id_usuario = db.Column(db.Integer, db.ForeignKey(tb_usuarios.id_usuario))
-    id_asignatura = db.Column(db.String(100), db.ForeignKey(tb_asignaturas.id_asignatura))
+    id_usuario = db.Column(db.Integer, db.ForeignKey(tb_usuarios.id_usuario, ondelete="CASCADE", onupdate="CASCADE"))
+    id_asignatura = db.Column(db.String(100), db.ForeignKey(tb_asignaturas.id_asignatura, ondelete="CASCADE", onupdate="CASCADE"))
 
 class tb_actividades(db.Model):
     __tablename__ = 'tb_actividades'
@@ -83,11 +83,11 @@ class tb_actividades(db.Model):
     porcentaje = db.Column(db.FLOAT)
     Calificacion = db.Column(db.FLOAT)
     estado = db.Column(db.String(30))
-    id_asignatura = db.Column(db.Integer, db.ForeignKey(tb_asignaturas.id_asignatura))
+    id_asignatura = db.Column(db.Integer, db.ForeignKey(tb_asignaturas.id_asignatura, ondelete="CASCADE", onupdate="CASCADE"))
 
 
 
-db.create_all()##para crear tablas de bases de datos
+db.create_all()##para crear tablas de la base de datos
 
 #RUTA INDEX
 @app.route("/")
@@ -95,7 +95,7 @@ def index():
     return redirect(url_for('login'))
     #return render_template('index.html')
 
-#RUTA LOGIN /no terminado aun.
+#RUTA LOGIN 
 
 @app.route("/login", methods=['POST', 'GET'])
 def login():
@@ -217,17 +217,30 @@ def editarUsuarios():
           
     return 'No se encuentra logueado'  
 
+#Boton eliminar usuario no funciona
 @app.route('/admin/eliminarUsuarios/', methods=['POST', 'GET'])
 def elimUsuarios():
     if 'username' in session and tb_usuarios.query.filter_by(nombre_usuario=session['username']).first().rol == "admin":
-
-        variable=tb_usuarios.query.get(id)
-        db.session.delete(variable)
+        
+        variable1=tb_usuarios.query.get(request.args.get('id'))
+        db.session.delete(variable1)
         db.session.commit()
-
+        variable2=tb_docentes.query.get(request.args.get('id'))
+        if variable2 != None:
+            db.session.delete(variable2)
+            db.session.commit()
+        variable3=tb_estudiantes.query.get(request.args.get('id'))
+        if variable3 != None:
+            db.session.delete(variable3)
+            db.session.commit()
+        variable4=tb_admin.query.get(request.args.get('id'))
+        if variable4 != None:
+            db.session.delete(variable4)
+            db.session.commit()
+        
 
          
-        return redirect(url_for('usuarios',usuarios=variable)) #redirecciona a admin/usuarios para verificar que se elimino
+        return redirect(url_for('usuarios',usuarios=variable1)) #redirecciona a admin/usuarios para verificar que se elimino
             
     return 'No se encuentra logueado' 
     
