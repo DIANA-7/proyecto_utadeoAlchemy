@@ -217,11 +217,11 @@ def editarUsuarios():
           
     return 'No se encuentra logueado'  
 
-#Boton eliminar usuario no funciona
+
 @app.route('/admin/eliminarUsuarios/', methods=['POST', 'GET'])
 def elimUsuarios():
     if 'username' in session and tb_usuarios.query.filter_by(nombre_usuario=session['username']).first().rol == "admin":
-        
+
         variable1=tb_usuarios.query.get(request.args.get('id'))
         db.session.delete(variable1)
         db.session.commit()
